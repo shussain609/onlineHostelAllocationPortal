@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hostel ////Allocation System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   
+    <style type="text/css">
+        .fixed1 {
+        position:fixed;
+        
+        top:20%;
+        left:30%;   
+        
+    }
+      .fixed2 {
+        position:fixed;
+        
+        top:15%;
+        left:20%;  
+        
+    }
+    .aa{
+    	
+    	margin: 0 auto;
+    	width:60%;
+    	height: 70%;
+    	background-color:  #ffe6ff;
+      border: 1px solid;
+        border-radius:15px;
+      border-color: blue;
+    	box-shadow: 5px 10px #d9b3ff;
+
+    
+    }
+   
+    .ee{
+    	margin: 30px;
+      margin-left: 70px;
+      font-size: 18px;
+    }
+
+.book-right{
+  float: right;
+  width: 60%;
+}
+.book-left{
+  float: left;
+  width: 40%;
+  padding-left: 0%;
+}
+.book-left ul{
+  list-style-type: none;
+}
+.book-left li{
+  font-size: 16px;
+  font-weight: 600;
+  color: #8585ad;
+  line-height: 1.9em;
+}
+.book-right li{
+  line-height: 2.2em;
+}
+.book-right ul{
+  list-style-type: none;
+}
+.secondhalf{
+  margin-left: 80px;
+  padding-bottom: 200px;
+}
+    </style>
+    <script type="text/javascript">
+        function loada()
+        {
+            
+            xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(this.readyState==4&&this.status==200)
+                {
+                    var res=JSON.parse(this.responseText);
+                    if(res.ret==1)
+                    {
+                        document.getElementById("name").innerHTML=res.name;
+                        document.getElementById("rname").innerHTML=res.roommatename;
+                        document.getElementById("room").innerHTML=res.roomno;
+                    }
+                    else
+                    {
+                        alert("An error occured");
+                    }
+                    
+                }
+            };
+            xmlhttp.open("post","lastpage.php");
+            xmlhttp.send();
+        }
+        </script>
+</head>
+<body onload="loada()" style="background-image: url(blue.jpg); background-repeat: no-repeat;background-size: 1800px 790px; opacity: 0.8;  ">
+ 
+<div class=" aa fixed2  " style="box-shadow: 3px 8px 10px #bf80ff;">
+ <p class="ee">
+<span class="glyphicon glyphicon-ok">
+  Transaction successfully verified 
+</p>
+ <p class="ee">
+<span class="glyphicon glyphicon-ok">
+ Your Hostel Allocation process has been completed
+</p>
+  <div class="secondhalf">
+   <div class="book-left">
+     <ul>
+     <li>Name :</li>
+     <li>Roommate :</li>
+     <li>Alloted Hostel :</li>
+     <li>Alloted Room :</li>
+   </ul>
+   </div>
+
+   
+  
+  <div class="book-right">
+    <ul >
+     <li id="name">t</li>
+     <li id="rname">t</li>
+     <li>Jasper Hostel</li>
+     <li id="room">t</li>
+    
+   </ul>
+ </div>
+   
+ </div>
+
+<div class="rr" style="padding-left: 420px; padding-top: 50px;">
+<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-off " onclick="window.location='logout.php'"> Logout</button>
+</div>
+ <p class="ee">
+<span class="glyphicon glyphicon-pencil">
+ <em>you may take snap of this page for further reference</em>
+</p>
+ </div>
+ 
+
+</body>
+</html>

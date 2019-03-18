@@ -1,0 +1,112 @@
+<!DOCTYPE html>    
+<html lang="en">
+
+<head>
+<title>HTML Test</title>
+<meta charset="UTF-8">
+<style>
+      .xyz
+      {
+      	 color: red; text-align: center;
+      }	
+      .button
+      {
+      	background-color: #4CAF50;
+   	    border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      .button:hover 
+      {
+      	background-color: purple;
+      }
+      .user
+      {
+      	padding-bottom: 5px;
+      }
+ </style>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+			function show() 
+			{
+				var x = document.getElementById("snackbar");
+				x.className = "show";
+    			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+			}
+                        function login(form)
+			{
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function()
+				{
+					if(this.readyState==4&&this.status==200);
+					{
+						if(xmlhttp.responseText=="2")
+								window.location="page2.html";
+                                                else if(xmlhttp.responseText=="3")
+								window.location="page3.html";
+                                                
+						else
+						{
+							document.getElementById("snackbar").innerHTML=xmlhttp.responseText;
+							show();
+						}
+					}	
+				};
+				xmlhttp.open("post",form.action);
+				xmlhttp.send(new FormData(form));
+			}
+		
+    
+</script>
+
+
+
+                
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<h3 class="xyz"><img class="big-logo" src="assets/images/logo.png" height="50" style="padding-right: 5px"/> Allotment Portal</h3>
+		</div>
+		<div>
+			<form action="login.php" method="post"   onsubmit="login(this);return false;">
+				<div class="user">
+					<label  for="input emails" >
+					User ID:  
+					</label>
+					
+					<input type="text" name="username" autocomplete="on">
+				</div>
+				<div>
+					<label  for="input emails" >
+
+					Password:
+					</label>
+					
+					<input type="Password" name="password">
+				</div>
+				<div class="checkbox">
+         	 	    <label><input type="checkbox"> Remember me</label>
+        		</div>
+				<div>
+					<input type="submit" value="Log In" class="button" >
+				</div>	
+				
+			</form>
+			<div id="snackbar">
+				
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>        

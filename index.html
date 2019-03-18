@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="uikit/css/uikit-rtl.css" rel="stylesheet">
+    <link href="uikit/css/uikit-rtl.min.css" rel="stylesheet">
+    <link href="uikit/css/uikit.css" rel="stylesheet">
+    <link href="uikit/css/uikit.min.css" rel="stylesheet">
+    <script type="text/javascript" src="uikit/js/uikit-icons.js"></script>
+    
+    <script type="text/javascript" src="uikit/js/uikit-icons.min.js"></script>
+    
+    <script type="text/javascript" src="uikit/js/uikit.js"></script>
+    
+    <script type="text/javascript" src="uikit/js/uikit.min.js"></script>
+    <script>
+      function show() 
+      {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+          setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      }
+      function login(form)
+			{
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function()
+				{
+					if(this.readyState==4&&this.status==200);
+					{
+						if(xmlhttp.responseText=="2")
+								window.location="page2.html";
+                                                else if(xmlhttp.responseText=="3")
+								window.location="page3.html";
+                                                else if(xmlhttp.responseText=="4")
+								window.location="page4.html";
+                                                else if(xmlhttp.responseText=="5")
+								window.location="twolast.html";
+                                                
+                                                
+						else
+						{
+							document.getElementById("snackbar").innerHTML=xmlhttp.responseText;
+							show();
+						}
+					}	
+				};
+				xmlhttp.open("post",form.action);
+				xmlhttp.send(new FormData(form));
+			}
+    </script>
+    <style type="text/css">
+    
+      .xyz
+      {
+         color: red; text-align: center;
+      } 
+    </style>
+</head>
+
+<body style="background-image: url(back.png); background-size: auto 100%;background-repeat: no-repeat;background-size: cover;height: 758px" >
+    
+      <div  align="center" style="width: 100%; padding-top: 200px;">
+        
+        <div style="background-color: white;width: 40%; height: 400px;box-shadow:  5px 5px 60px 2px">
+          <div style="float: left; width: 50%;">
+          <table style="width: 100%">
+            <tr><td align="center" style="padding: 10px"><font size="6" color="black" style="font-family: sans-serif;">Login</font></td></tr>
+          </table>
+            
+   <!--  <div align="center">
+      <h3 class="xyz" ><img class="big-logo" src="mis-logo-big.png" height="50" width="80" style="padding-right: 5px; padding-bottom: 30px;"/> Allotment Portal</h3>
+    </div> -->
+    <div>
+      <form action="login.php" method="post"  align="center" onsubmit="login(this);return false;">
+        <table align="center" style="margin-top: 20px" >
+          <tr >
+            
+            <td style="padding-bottom: 30px" >
+              <input type="text" name="username" autocomplete="on" placeholder="Username" style="padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%">
+            </td>
+          </tr>
+          <tr>
+            
+            <td style="padding-bottom: 30px">
+              <input type="Password" name="password" placeholder="Password" style="padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%">
+            </td>
+          </tr>
+        </table>
+        <!-- <div class="user" ;          <label  for="input emails" class="abc">
+          User ID:  
+          </label>
+          
+          <input type="text" name="username" autocomplete="on" style="margin-left: 10px;">
+        </div>
+        <div>
+          <label  for="input emails" >
+
+          Password:
+          </label>
+          
+          <input type="Password" name="password">
+        </div> -->
+        <div class="checkbox" align="left" style="padding-left: 62px;margin-bottom: 20px">
+                <label><input type="checkbox"> Remember me</label>
+            </div>
+        <div>
+          <input type="submit" value="Log In" class="button" style="margin: 10px; background-color: #555555;border: none;color: white; padding-right: 20px;padding-left: 20px;padding-top: 10px;padding-bottom: 10px; text-align: center;
+          text-decoration: none; display: inline-block;font-size: 16px;cursor: pointer;margin-top: 20px">
+        </div>  
+        
+      </form>
+      <div id="snackbar">
+        
+      </div>
+    </div>
+  </div>
+  <div style="float: right;width: 50%; background-color: #37474f;height: 100%;">
+    <table  style="margin-bottom: 50px;margin-top: 50px;">
+              <tr>
+                <td>
+                  <img class="big-logo" src="logo.png"  />
+                </td>
+              </tr>
+              <tr><td align="center" style="padding-top: 10px"><font color="white" size="5">Hostel<br>Allotment Portal</font></td></tr> 
+    </table>
+  </div>
+  
+  </div>
+  </div>
+
+</body>
+
+</html>

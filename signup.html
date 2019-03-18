@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function signup(form)
+			{
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function()
+				{
+					if(this.readyState==4&&this.status==200)
+					{
+						document.getElementById("txt").innerHTML=xmlhttp.responseText;
+					}
+				};
+				xmlhttp.open("post",form.action);
+				
+				xmlhttp.send(new FormData(form));
+			}
+			function cp()
+			{
+				if(document.getElementById("password").value==document.getElementById("cpassword").value)
+					document.getElementById("cpassword").style="Background-color:rgba(57, 255, 0,0.4);";
+				else
+					document.getElementById("cpassword").style="Background-color:rgba(255, 0, 47,0.4);";
+			}
+		</script>
+		<title>
+			Signup
+		</title>
+	</head>
+	<body>
+		<form method="post" action="signup.php" onsubmit="signup(this); return false;">
+			User Name  <input type="text" name="username" /><br />
+			Password <input type="password" name="password" id="password" onkeyup="cp()"/><br />
+			Confirm Password  <input type="password" name="cpassword" id="cpassword" onkeyup="cp()"/><br />
+			<input type="submit" value="submit"/>
+		</form>
+		<p><span id="txt"> </span></p>
+	</body>
+</html>

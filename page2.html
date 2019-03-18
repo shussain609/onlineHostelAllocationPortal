@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <meta name="udacity-grader" content="tests.json">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style type="text/css">
+   .alignments{
+    margin-left: 15%;
+    margin-top: 10%;
+   }
+   .btn {
+    background-color: #424242;
+    border: none;
+    color: white;
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+ .container{
+    vertical-align: center;
+    align-content: center;
+    
+    width: 90%;
+    margin-right: 100px;
+    
+  
+    text-align: center;
+  }
+  .form-control{
+    align-self: center;
+        width: 100%;
+  }
+ 
+
+  .form-control{
+    width: 80%;
+  }
+  .aa{
+    height: 70%;
+    padding-top: 10%;
+  }
+  #fileupload{
+    padding-top: 10%;
+  }
+
+ </style> 
+ <script type="text/javascript">
+     function chgE(form)
+     {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if(this.readyState==4&&this.status==200);
+            {
+                alert(this.responseText);              
+            }
+        };
+        xmlhttp.open("post",form.action);
+        xmlhttp.send(new FormData(form));
+     }
+     function chgP(form)
+     {
+        if(document.getElementById("p1").value!=document.getElementById("p2"))
+        {
+            alert('Passwords do not match');
+            return;
+        }
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if(this.readyState==4&&this.status==200);
+            {
+                alert(this.responseText);              
+            }
+        };
+        xmlhttp.open("post",form.action);
+        xmlhttp.send(new FormData(form));
+     }
+     function me()
+     {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if(this.readyState==4&&this.status==200);
+            {
+                document.getElementById("p1p13").innerHTML=this.responseText;              
+            }
+        };
+        xmlhttp.open("post","find.php");
+        xmlhttp.send();
+     }
+     </script>
+</head>
+
+<body onload="me()" style="background-image: url(orgb.jpg); background-repeat: no-repeat;background-size: 1800px 790px; opacity: 0.8;">
+    <div style="width: 70%;height: 80%; position: fixed; top: 10%; left: 15%; border-radius: 10px; box-shadow: 3px 8px 10px #5e1d05;">
+      <div style="float: left; background-color: #2B2B2B;width: 35%; height: 100%; border-bottom-left-radius: 10px;border-top-left-radius: 10px; color: #e5e3e3">
+        <div class="alignments">
+        <div style="size: 50px;">
+          <span class="glyphicon glyphicon-user" ></span>
+         <h3> <b>Hello!</b> </h3>
+        </div>
+        <div>
+         <h2 id="p1p13"> Shadab Hussain </h2>
+        </div>
+        <div class="container" >
+  <h4>Want to change email id or password?</h4>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Change Password</a>
+      </h5>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse ">
+      <div id="tohide">
+      
+
+    <form method="POST" action="changePassword.php" class="form-group" onsubmit="chgP(this);return false;">
+    <label for="tranid">New Password</label>
+    <input  type="text" class="form-control" name="pwd1" id="p1" placeholder=" new password..." style="margin: 0 auto;">
+    <label for="tranid">Confirm Password</label>
+    <input  type="text" class="form-control" id="p2" name="pwd2" placeholder="re-enter password..." style="margin: 0 auto;">
+     <div>
+       <button type="submit" class="btn btn-default" id="show">Submit</button>
+      </div>
+     
+  </form>
+  </div>
+   
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        Change Email Id</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+       <form method="POST" action="changeEmail.php" class="form-group" onsubmit="chgE(this);return false;">
+    <label for="tranid">Enter New Email Id</label>
+    <input name="email" type="email" class="form-control" id="eml" placeholder=" email id.." style="margin: 0 auto;">
+     <div>
+       <button type="submit" class="btn btn-default" id="show" >Submit</button>
+      </div>
+     
+  </form>
+    </div>
+  </div>
+ 
+</div>
+</div>
+</div>
+       
+      </div>
+       <div class="container" style="color: black;">
+         
+       <a href="#" title="Steps need to be done on this page" data-toggle="popover" data-trigger="focus" data-content="Uplaod the fee receipt of payment , then click on submit" style="float: right; color: white;"> <span class="glyphicon glyphicon-question-sign" style="font-size: 35px;" ></span></a>
+      </div>
+
+          <script>
+        $(document).ready(function(){
+         $('[data-toggle="popover"]').popover();   
+              });
+        </script>
+    </div>
+      <div style="float: right; background-color: #e5e3e3; width: 65%; height: 100%; border-top-right-radius: 10px; border-bottom-right-radius:10px; color: #2B2B2B">
+      <div style="margin-left: 30px;">
+      <div >
+        <h3>Lets Start The Aloocation Process</h3>
+      </div>
+     
+<div class="container">
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <input type="file" name="file"  id="fileupload"> <label for="fileupload"> Select a file to upload</label> <br>
+    <div>
+        <input class="btn" type="submit" name="submit" value="Submit" style="margin-left: 10%; margin-top: 20px;">
+      </div>
+</div>
+ </form>
+     
+     
+    </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

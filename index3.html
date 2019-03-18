@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title>Sign-Up/Login Form</title>
+		<link rel="stylesheet" href="css/normalize.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/toast.css">
+		<script>
+			function show() 
+			{
+				var x = document.getElementById("snackbar");
+				x.className = "show";
+    			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+			}
+			function signup(form)
+			{
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function()
+				{
+					if(this.readyState==4&&this.status==200);
+					{
+							if(xmlhttp.responseText=="1")
+								window.location="home.html";
+							else
+							{
+								document.getElementById("snackbar").innerHTML=xmlhttp.responseText;
+								show();
+							}
+					}
+				};
+				xmlhttp.open("post",form.action);
+				xmlhttp.send(new FormData(form));
+			}
+			function login(form)
+			{
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function()
+				{
+					if(this.readyState==4&&this.status==200);
+					{
+						if(xmlhttp.responseText=="1")
+								window.location="home.html";
+						else
+						{
+							document.getElementById("snackbar").innerHTML=xmlhttp.responseText;
+							show();
+						}
+					}	
+				};
+				xmlhttp.open("post",form.action);
+				xmlhttp.send(new FormData(form));
+			}
+		</script>
+	
+	</head>
+	
+	<body>
+		<div class="form">
+			<img src="img.jpg"/>
+			<ul class="tab-group">
+				<li class="tab active">
+					<a href="#signup">Sign Up</a>
+				</li>
+				<li class="tab">
+					<a href="#login">Log In</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="signup">
+					<h1>Give Us A Chance!</h1>
+
+					<form action="signup.php" method="post" onsubmit="signup(this); return false;">
+
+						<div class="top-row">
+							<div class="field-wrap">
+								<label> First Name<span class="req">*</span> </label>
+								<input type="text" name="fname" required autocomplete="off" />
+							</div>
+
+							<div class="field-wrap">
+								<label> Last Name<span class="req">*</span> </label>
+								<input type="text" name="lname" required autocomplete="off"/>
+							</div>
+						</div>
+
+						<div class="field-wrap">
+							<label> Email Address<span class="req">*</span> </label>
+							<input type="email" name="username" required autocomplete="off"/>
+						</div>
+
+						<div class="field-wrap">
+							<label> Set A Password<span class="req">*</span> </label>
+							<input type="password" id = "password" name="password" required autocomplete="off"/>
+						</div>
+						<div class="field-wrap">
+							<label> Confirm Password<span class="req">*</span> </label>
+							<input type="password" id="cpassword" name="cpassword" required  autocomplete="off"/>
+						</div>
+						<button type="submit" class="button button-block">
+							Get Started
+						</button>
+
+					</form>
+
+				</div>
+
+				<div id="login">
+					<h1>Welcome Back!</h1>
+
+					<form action="login.php" method="post" onsubmit="login(this); return false;">
+
+						<div class="field-wrap">
+							<label> Email Address<span class="req" >*</span> </label>
+							<input type="email"required autocomplete="off" name="username"/>
+						</div>
+
+						<div class="field-wrap">
+							<label> Password<span class="req" >*</span> </label>
+							<input type="password"required autocomplete="off" name="password"/>
+						</div>
+
+						<button class="button button-block">
+							Log In
+						</button>
+
+					</form>
+
+				</div>
+
+			</div><!-- tab-content -->
+
+		</div>
+		<!-- /form -->
+		<div id="snackbar"> </div>
+		<script src='js/jquery-3.2.0.min.js'></script>
+
+		<script src="js/index.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Home
+		</title>
+		<script>
+			function load()
+			{
+				xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function()
+				{
+					if(this.readyState==4&&this.status==200)
+					{
+							var res=JSON.parse(this.responseText);
+							if(res.ret==-1)
+							{
+								alert("You are not logged in. Click Ok to go to login page");
+								window.location="index.html";
+								
+							}
+							else if(res.ret==-2)
+							{
+								alert("Error in connection. Please retry later");
+								window.location="index.html";
+							}
+							else
+							{
+								document.body.style.backgroundImage = "url('bkg2.jpg')";
+								var txt="Welcome ";
+								txt+=res.fname;
+								txt+=" ";
+								txt+=res.lname;
+								txt+=". Your email id is "+res.user+"<br/>";
+								var btn = document.createElement("BUTTON");
+    							btn.innerText="CLICK TO LOGOUT";
+    							btn.style.height='50px';
+    							btn.style.width='200px';
+    							btn.onclick=function()
+    							{
+    								xmlhttp2=new XMLHttpRequest();
+    								xmlhttp2.onreadystatechange=function()
+    								{
+    									if(this.readyState==4&&this.status==200)
+    									{
+    										window.location="index.html";
+    									}
+    									
+    								};
+    								xmlhttp2.open("post","logout.php");
+									xmlhttp2.send();
+    								
+    							};
+    							
+    							document.getElementById("txt").innerHTML=txt;
+    							document.getElementById("txt").appendChild(btn);
+    								
+							}	
+							
+					}
+				};
+				xmlhttp.open("post","home.php");
+				xmlhttp.send();
+			}
+		</script>
+	</head>
+	<body onload="load()">
+		<font color="white" size=18> <p id="txt" > </p></font>
+	</body>
+</html>

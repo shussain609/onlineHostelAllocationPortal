@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms no-csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en-US" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Slacker Card</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <meta name="udacity-grader" content="tests.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  .check-button{
+    display: block;
+    margin: 16px 0 22px;
+    border:none;
+    font-size: 16px;
+    cursor: pointer;
+    background: #D88A04;
+    padding: 7px 11px;
+    color: #fff;
+    outline: none;
+    align-items: center;
+  }
+ 
+  .container-fliud{
+    vertical-align: super;
+    align-content: center;
+    
+    background-color: white;
+    
+    height: 100%;
+    width: 80%;
+    padding-left: 7%; 
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: blue;
+    padding-top: 0;
+  
+    margin:0 auto;
+    border: 2px solid red;
+  }
+ 
+  .main{
+    width: 80%;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 10% 10%;
+  }
+   
+ 
+ 
+  .gap{
+    background-color: white; 
+    padding: 1.8%;
+    font-size: 8px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20%;
+   }  
+  .sm{
+    padding: 2%;
+    font-size: 12px;
+     background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20%;
+  }
+  .bm{
+    padding: 2%;
+    font-size: 12px;
+     background-color: blue; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20%;
+  }
+   .rm{
+    padding: 2%;
+    font-size: 12px;
+     background-color: #ff0000; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20%;
+  }
+ 
+.bb{
+  padding-left: 17%;
+}
+.crd{
+
+}
+.bc{
+    padding-right: 56%;
+}
+.book-right{
+  float: right;
+  width: 50%;
+}
+.book-left{
+  float: left;
+  width: 50%;
+  padding-left: 0%;
+}
+.book-left ul{
+  list-style-type: none;
+}
+.book-left li{
+  font-size: 16px;
+  font-weight: 600;
+  color: #D88A04;
+  line-height: 1.9em;
+}
+.book-right li{
+  line-height: 2.2em;
+}
+.book-right ul{
+  list-style-type: none;
+}
+.secondhalf{
+  padding-bottom: 200px;
+}
+#submit{
+
+   padding-left: 32%;
+}
+
+  </style>
+  <script type="text/javascript">
+      var x=0;
+      var y=0;
+      function clicka(btna)
+      {
+          
+          if(x!=0)
+          {
+              $(x).removeClass("bm");
+              $(x).addClass("sm");
+              
+          }
+          document.getElementById("pop").value=btna;
+          document.getElementById("roo").innerHTML=btna;
+          x=document.getElementById(btna);
+          y=btna;
+          $(x).removeClass("sm");
+          $(x).addClass("bm");
+      }
+  function load()
+  {
+      xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function()
+      {
+          if(this.readyState==4&&this.status==200)
+          {
+              var res=JSON.parse(this.responseText);
+              if(res.error==1)
+              {
+                  alert('An error occured.Please try again');
+                  window.location="index.html";
+                  return;
+              }
+              for(var i=1;i<53;i++)
+              {
+                  if(res.status[i]==1)//room is already alloted
+                  {
+   
+                      
+                      var one="#"+i.toString();
+                      
+    
+                       $(one).removeClass("sm");
+                       $(one).addClass("rm disabled");
+                      document.getElementById(i.toString()).onclick=function(){};
+                    
+                    }
+                  else
+                  {
+                      
+                  }
+              }
+              document.getElementById("name").innerHTML=res.name;
+              document.getElementById("admn").innerHTML=res.uname;
+              
+              
+          }
+      };
+      xmlhttp.open("post","page4.php");
+      xmlhttp.send();
+				
+  }
+  function subr(forma)
+  {
+      if(y==0)
+      {
+          alert('Please Select a room before submitting.');
+          return;
+      }
+     
+      xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function()
+      {
+          if(this.readyState==4&&this.status==200)
+          {
+              if(this.responseText=="1")
+              {
+                  window.location="twolast.html";
+              }
+              else
+              {
+                  alert(this.responseText);
+              }  
+                
+          }
+      };
+      xmlhttp.open("post","alloter.php");
+      xmlhttp.send(new FormData(forma));
+      
+  }
+
+
+   </script>
+  
+</head>
+<body onload="load();return false;">
+  <br><br><br>
+
+  <div class="container-fliud " >
+    <div class="main">
+       <div class="secondhalf">
+   <div class="book-left">
+     <ul>
+     <li>Name :</li>
+     <li>Admn. No :</li>
+     <li>Alloted Hostel :</li>
+     <li>Selected Room :</li>
+   </ul>
+   </div>
+
+   
+  
+  <div class="book-right">
+    <ul >
+     <li id="name">&nbsp;</li>
+     <li id="admn">&nbsp;</li>
+     <li > Jasper Hostel </li>
+     <li id="roo">-</li>
+   </ul>
+ </div>
+   
+ </div>
+ <br>
+    <div >
+     <span class="bb"></span> <!-- 1-->
+     <button type="button" class="btn sm button" id="1" onClick="clicka(id)">01</button>
+ <button type="button" class="btn sm button " id="3" onClick="clicka(id)">03</button>
+ <button type="button" class="btn sm button" id="5" onClick="clicka(id)">05</button>
+ <button type="button" class="btn sm button" id="7" onClick="clicka(id)">07</button>
+ <button type="button" class="btn sm button" id="8" onClick="clicka(id)">08</button>
+ <button type="button" class="btn sm button" id="10" onClick="clicka(id)">10</button>
+ <button type="button" class="btn sm button" id="12" onClick="clicka(id)">12</button>
+ 
+</div>
+ <br>
+   <div >
+     <span class="bb"></span>  <!-- 2-->
+  <button type="button" class="btn sm button" id="2" onClick="clicka(id)">02</button>
+ <button type="button" class="btn sm button" id="4" onClick="clicka(id)">04</button>
+ <button type="button" class="btn sm button" id="6" onClick="clicka(id)">06</button>
+ <button type="button" class="btn  gap disabled" >Gap</button>
+ <button type="button" class="btn sm button" id="9" onClick="clicka(id)">09</button>
+ <button type="button" class="btn sm button" id="11" onClick="clicka(id)">11</button>
+ <button type="button" class="btn sm button" id="13" onClick="clicka(id)">13</button>
+
+</div>
+   <div ><!-- 3-->
+     
+  <button type="button" class="btn sm button" id="51" onClick="clicka(id)">51</button>
+    <span class="crd"></span>
+ <button type="button" class="btn sm button" id="52" onClick="clicka(id)">52</button>
+   <span class="bc"></span>
+ <button type="button" class="btn sm button" id="15" onClick="clicka(id)">15</button>
+   <span class="crd"></span>
+ <button type="button" class="btn sm button" id="14" onClick="clicka(id)">14</button>
+ 
+</div>
+  <div><!-- 4-->
+     
+  <button type="button" class="btn sm button" id="49" onClick="clicka(id)">49</button>
+    <span class="crd"></span>
+ <button type="button" class="btn sm button" id="50" onClick="clicka(id)">50</button>
+   <span class="bc"></span>
+ <button type="button" class="btn sm button" id="17" onClick="clicka(id)">17</button>
+   <span class="crd"></span>
+ <button type="button" class="btn sm button" id="16" onClick="clicka(id)">16</button>
+ 
+</div>
+ <div><!-- 5-->
+     
+  <button type="button" class="btn sm button" id="47" onClick="clicka(id)">47</button>
+    <span class="crd"></span>
+ <button type="button" class="btn sm button" id="48" onClick="clicka(id)">48</button>
+   <span class="bc"></span>
+ <button type="button" class="btn sm button" id="19" onClick="clicka(id)">19</button>
+   <span class="crd"></span>
+ <button type="button" class="btn sm button" id="18" onClick="clicka(id)">18</button>
+ 
+</div>
+ <div ><!-- 6-->
+     
+  <button type="button" class="btnsm sm button" id="46" onClick="clicka(id)">46</button>
+    <span class="crd"></span>
+ <button type="button" class="btn gap disabled" >Gap</button>
+   <span class="bc"></span>
+ <button type="button"  class="btn gap disabled">Gap</button>
+   <span class="mm"></span>
+ <button type="button" class="btn sm button" id="20" onClick="clicka(id)">20</button>
+ 
+</div>
+ <div ><!-- 7-->
+     
+  <button type="button" class="btn sm button" id="44" onClick="clicka(id)">44</button>
+    <span class="crd"></span>
+ <button type="button" class="btn sm button" id="45" onClick="clicka(id)">45</button>
+   <span class="bc"></span>
+ <button type="button" class="btn sm button" id="22" onClick="clicka(id)">22</button>
+   <span class="crd"></span>
+ <button type="button" class="btn sm button" id="21" onClick="clicka(id)">21</button>
+ 
+</div>
+ <div ><!-- 8-->
+     
+  <button type="button" class="btn sm button" id="42" onClick="clicka(id)">42</button>
+    <span class="crd"></span>
+ <button type="button" class="btn sm button" id="43" onClick="clicka(id)">43</button>
+   <span class="bc"></span>
+ <button type="button" class="btn sm button" id="24" onClick="clicka(id)">24</button>
+   <span class="crd"></span>
+ <button type="button" class="btn sm button" id="23" onClick="clicka(id)">23</button>
+ 
+</div>
+ <div ><!-- 9-->
+     
+  <button type="button" class="btn sm button" id="40" onClick="clicka(id)">40</button>
+    <span class="crd"></span>
+ <button type="button" class="btn sm button" id="41" onClick="clicka(id)">41</button>
+   <span class="bc"></span>
+ <button type="button" class="btn sm button" id="26" onClick="clicka(id)">26</button>
+   <span class="crd"></span>
+ <button type="button" class="btn sm button" id="25" onClick="clicka(id)">25</button>
+ 
+</div>
+
+    <div ><!-- 10-->
+     <span class="bb"></span> 
+  <button type="button" class="btn sm button " id="39" onClick="clicka(id)">39</button>
+ <button type="button" class="btn sm button " id="37" onClick="clicka(id)">37</button>
+ <button type="button" class="btn sm button" id="35" onClick="clicka(id)">35</button>
+ <button type="button" class="btn gap disabled">Gap</button>
+ <button type="button" class="btn sm button" id="32" onClick="clicka(id)">32</button>
+ <button type="button" class="btn sm button" id="30" onClick="clicka(id)">30</button>
+ <button type="button" class="btn sm button" id="28" onClick="clicka(id)">28</button>
+ 
+</div>
+ <br>
+  <div><!-- 11-->
+     <span class="bb"></span>  
+  <button type="button" class="btn sm button" id="38" onClick="clicka(id)">38</button>
+ <button type="button" class="btn sm button" id="36" onClick="clicka(id)">36</button>
+ <button type="button" class="btn sm button" id="34" onClick="clicka(id)">34</button>
+ <button type="button" class="btn sm button" id="33" onClick="clicka(id)">33</button>
+ <button type="button" class="btn sm button" id="31" onClick="clicka(id)">31</button>
+ <button type="button" class="btn sm button" id="29" onClick="clicka(id)">29</button>
+ <button type="button" class="btn sm button" id="27" onClick="clicka(id)">27</button>
+
+</div>
+
+ <br><br>
+<span id="submit"></span>
+<form method="post" action="alloter.php" onsubmit="subr(this);return false;">
+  <input type="hidden"  name="room" id="pop">
+  <input type="submit" class="btn btn-primary btn-lg " value="Final Submission">    
+</form>
+</div>
+      
+</div>
+<br><br><br>
+</body>
+</html>
+  
