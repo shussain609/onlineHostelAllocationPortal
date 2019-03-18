@@ -1,0 +1,31 @@
+<script>
+    function load()
+    {
+        var curPage="";
+        xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+        {
+            
+            if(this.readyState==4&&this.status==200)
+            {
+                if(this.responseText==curPage)
+                {
+                    
+                }
+                else if(this.responseText=="-1")
+                    window.location="index.html";
+                else if(this.responseText=="2")
+                    window.location="page2.html";
+                else if(this.responseText=="3")
+                    window.location="page2.html";
+                else if(this.responseText=="4")
+                    window.location="page4.html";
+                else if(this.responseText=="5")
+                    window.location="page5.html";
+            }
+        };
+        xmlhttp.open("post","checkUserValidity.php");
+	xmlhttp.send();
+    }
+</script>
+
